@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Valentine Escape Room</title>
+
+<style>
+body {
+    margin: 0;
+    background: linear-gradient(135deg, #000000, #330033);
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.page {
+    display: none;
+    width: 85%;
+    max-width: 800px;
+}
+
+.active {
+    display: block;
+}
+
+h1 {
+    font-size: 42px;
+}
+
+p {
+    font-size: 20px;
+    line-height: 1.6;
+}
+
+input {
+    padding: 10px;
+    width: 260px;
+    font-size: 16px;
+    margin-top: 15px;
+    border-radius: 5px;
+    border: none;
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px 30px;
+    font-size: 16px;
+    background: #ff4da6;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+button:hover {
+    background: #ff1a8c;
+}
+
+.error {
+    color: #ff4d4d;
+    margin-top: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<div class="page active" id="page1">
+    <h1>Happy Valentine's Day ❤️</h1>
+    <button onclick="nextPage(2)">Start</button>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="page2">
+    <p>
+    Before we ever met… before we ever saw each other…<br>
+    There was a call.<br>
+    Two strangers. One conversation.<br>
+    A moment that quietly started everything.
+    </p>
+
+    <p><b>Enter the date when our voices first connected. (DDMMYYYY)</b></p>
+
+    <input type="password" id="answer2">
+    <br>
+    <button onclick="checkLevel2()">Unlock</button>
+    <div class="error" id="error2"></div>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" id="page3">
+    <p><b>Memory Database Access Required.</b></p>
+    <p>Enter the location of our first secure romantic session.</p>
+
+    <input type="text" id="answer3">
+    <br>
+    <button onclick="checkLevel3()">Verify</button>
+    <div class="error" id="error3"></div>
+</div>
+
+<!-- PAGE 4 -->
+<div class="page" id="page4">
+    <p>
+    You are strong for the world,<br>
+    Serious in meetings,<br>
+    Responsible at home…<br>
+    But in my arms, you become my…?
+    </p>
+
+    <input type="text" id="answer4">
+    <br>
+    <button onclick="checkLevel4()">Continue</button>
+    <div class="error" id="error4"></div>
+</div>
+
+<!-- PAGE 5 -->
+<div class="page" id="page5">
+    <h1>Your Valentine Gift is Waiting For You ❤️</h1>
+
+    <p>
+    I am warm but not alive,<br>
+    I hold secrets where flavors thrive.<br>
+    Plates and spices call it home,<br>
+    Find your surprise where meals are born.
+    </p>
+
+    <p style="margin-top:30px; font-size:22px;">
+    Mission Complete 💌
+    </p>
+</div>
+
+<script>
+function nextPage(pageNumber) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page' + pageNumber).classList.add('active');
+}
+
+function checkLevel2() {
+    var correct = "04052025";
+    var input = document.getElementById("answer2").value.trim();
+
+    if(input === correct) {
+        nextPage(3);
+    } else {
+        document.getElementById("error2").innerText = "Hmm… Think again ❤️";
+    }
+}
+
+function checkLevel3() {
+    var correct = "river deck cottages";
+    var input = document.getElementById("answer3").value.toLowerCase().trim();
+
+    if(input === correct) {
+        nextPage(4);
+    } else {
+        document.getElementById("error3").innerText = "Access Denied 😌 Try again.";
+    }
+}
+
+function checkLevel4() {
+    var correct = "cute little baby";
+    var input = document.getElementById("answer4").value.toLowerCase().trim();
+
+    if(input === correct) {
+        nextPage(5);
+    } else {
+        document.getElementById("error4").innerText = "That’s not what I call you 😏 Try again.";
+    }
+}
+</script>
+
+</body>
+</html>
